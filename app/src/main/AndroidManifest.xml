@@ -7,6 +7,9 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_CALL_LOG"/>
 
+    <!-- telephony 하드웨어가 필수가 아님을 명시 (Lint 오류 해결) -->
+    <uses-feature android:name="android.hardware.telephony" android:required="false"/>
+
     <!-- 위치 권한 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
