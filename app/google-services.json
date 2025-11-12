@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "209224215771",
+    "project_id": "corkcharge",
+    "storage_bucket": "corkcharge.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:209224215771:android:81b391057ac17e50f2f0fe",
+        "android_client_info": {
+          "package_name": "com.corkcharge.corkcharge_an"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_PhCzp0WV9Tp9ZeuTMHTndyCSF-A0gmU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
