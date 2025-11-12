@@ -11,6 +11,12 @@ import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.corkcharge.corkcharge_an.App
+import com.corkcharge.corkcharge_an.MainActivity
+import com.corkcharge.corkcharge_an.R
+import com.corkcharge.corkcharge_an.data.repository.FcmRepository
+import com.google.firebase.messaging.FirebaseMessagingService
+import com.google.firebase.messaging.RemoteMessage
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -99,7 +105,7 @@ class FcmService : FirebaseMessagingService() {
 
         // 알림 빌더
         val builder = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.drawable.ic_medi_app) // 반드시 존재하는 리소스여야 함
+            .setSmallIcon(R.mipmap.ic_launcher)
             .setContentTitle(title)
             .setContentText(body)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
