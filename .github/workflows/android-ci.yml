@@ -7,40 +7,45 @@ on:
     branches: [ "main" ]
 
 jobs:
-  ci-build:
+  build:
+    name: Build & Test
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      # 1. 저장소 체크아웃
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-
-      - name: Set up JDK 17
+      # 2. JDK 17 설치 (Android Gradle Plugin 8.x 호환)
+      - name: Set up JDK
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
           distribution: 'temurin'
-          cache: gradle
+          java-version: '17'
 
+      # 3. Gradle 캐시 설정 (빌드 시간 단축)
       - name: Cache Gradle packages
         uses: actions/cache@v4
         with:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties', '**/buildSrc/**/*.kt') }}
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      # (선택) Firebase를 사용하는 경우만 유지
-      - name: Generate google-services.json
-        run: |
-          echo '${{ secrets.GOOGLE_SERVICES }}' | base64 --decode > ./app/google-services.json
+      # 4. Gradle 권한 부여
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
-      # (선택) Detekt 사용 시 코드 스타일 검사
-      - name: Code style checks
-        run: ./gradlew detekt
+      # 5. Gradle 빌드
+      - name: Build project
+        run: ./gradlew assembleDebug
 
-      - name: Run build
-        run: ./gradlew assembleDebug --stacktrace
+      # 6. Unit Test 실행 (있을 경우)
+      - name: Run unit tests
+        run: ./gradlew testDebugUnitTest
+
+      # 7. Lint 검사
+      - name: Run Lint
+        run: ./gradlew lint
