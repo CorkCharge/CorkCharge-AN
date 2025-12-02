@@ -23,6 +23,8 @@ import design.theme.CorkChargeTheme
 import kmp_corkcharge_an.composeapp.generated.resources.Res
 import kmp_corkcharge_an.composeapp.generated.resources.bg_what_is_corkage
 import kmp_corkcharge_an.composeapp.generated.resources.ic_onboarding_first
+import kmp_corkcharge_an.composeapp.generated.resources.img_next_btn
+import kmp_corkcharge_an.composeapp.generated.resources.img_onboarding_first
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -62,11 +64,11 @@ fun ExplainCorkageScreen() {
             modifier = Modifier.fillMaxSize().padding(bottom = 44.dp),
         ) {
             Column(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().padding(top = 10.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Icon(
-                    painter = painterResource(Res.drawable.ic_onboarding_first),
+                Image(
+                    painter = painterResource(Res.drawable.img_onboarding_first),
                     contentDescription = "첫번째 온보딩",
                     modifier = Modifier.size(34.dp, 6.dp)
                 )
@@ -82,11 +84,23 @@ fun ExplainCorkageScreen() {
                     style = CorkChargeTheme.typography.HeadLine_Medium_B,
                     color = Color.White
                 )
-                Text(text = "음식점에 외부 술을 가져와서 마시는 것", style = CorkChargeTheme.typography.HeadLine_Small, color = CorkChargeTheme.colors.gray3)
-            Spacer(modifier = Modifier.weight(1f))
-                Text(text = "경우에 따라 잔과 얼음을 제공하기도 합니다.", color = Color.White, style = CorkChargeTheme.typography.Label_Tab)
+                Text(
+                    text = "음식점에 외부 술을 가져와서 마시는 것",
+                    style = CorkChargeTheme.typography.HeadLine_Small,
+                    color = CorkChargeTheme.colors.gray3
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                Text(
+                    text = "경우에 따라 잔과 얼음을 제공하기도 합니다.",
+                    color = Color.White,
+                    style = CorkChargeTheme.typography.Label_Tab
+                )
                 Spacer(modifier = Modifier.height(36.dp))
-
+                Image(
+                    painter = painterResource(Res.drawable.img_next_btn),
+                    contentDescription = "다음 버튼",
+                    modifier = Modifier.fillMaxWidth().height(48.dp)
+                )
             }
         }
     }

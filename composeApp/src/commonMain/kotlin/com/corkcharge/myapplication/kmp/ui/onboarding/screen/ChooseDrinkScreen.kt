@@ -1,10 +1,11 @@
 package com.corkcharge.myapplication.kmp.ui.onboarding.screen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -13,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import design.theme.CorkChargeTheme
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun ChooseDrinkScreen() {
@@ -23,6 +25,30 @@ fun ChooseDrinkScreen() {
         // TODO: State bar 넣기
         Text(modifier = Modifier.padding(top = 48.dp), text = "당신의 잔에 담고 싶은 건?", style = CorkChargeTheme.typography.HeadLine_XL, color = Color.Black)
         Text(modifier = Modifier.padding(top = 16.dp), text ="(복수 선택 가능)", color = CorkChargeTheme.colors.gray7, style = CorkChargeTheme.typography.HeadLine_Small)
-
+        Column(
+            modifier = Modifier.padding(top = 34.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp) // 가로 10
+        ) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+            }
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(10.dp)
+            ) {}
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(10.dp)
+            ) {}
+            Row(
+            ) {
+                Spacer(modifier = Modifier.weight(1f))
+            }
+        }
     }
+}
+
+@Preview
+@Composable
+fun ChooseDrinkScreenPreview() {
+    ChooseDrinkScreen()
 }

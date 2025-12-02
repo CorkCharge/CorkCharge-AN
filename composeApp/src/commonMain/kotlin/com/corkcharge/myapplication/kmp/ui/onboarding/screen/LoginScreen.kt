@@ -22,6 +22,7 @@ import kmp_corkcharge_an.composeapp.generated.resources.bg_login
 import kmp_corkcharge_an.composeapp.generated.resources.img_corkcharge_logo
 import kmp_corkcharge_an.composeapp.generated.resources.img_naver_login_button
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun LoginScreen() {
@@ -59,4 +60,10 @@ fun LoginScreen() {
             Text(text = "로그인 없이 보기", textDecoration = TextDecoration.Underline, style = CorkChargeTheme.typography.Body_Medium_R, color = CorkChargeTheme.colors.gray2)
         }
     }
+}
+
+@Preview
+@Composable
+fun LoginScreenPreview() {
+    LoginScreen()
 }

@@ -15,6 +15,7 @@ import kmp_corkcharge_an.composeapp.generated.resources.bg_gradient_left
 import kmp_corkcharge_an.composeapp.generated.resources.bg_login
 import kmp_corkcharge_an.composeapp.generated.resources.img_corkcharge_logo
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun SplashScreen(modifier: Modifier = Modifier) { // 시작, 끝일 때 사용하는 화면
@@ -35,4 +36,10 @@ fun SplashScreen(modifier: Modifier = Modifier) { // 시작, 끝일 때 사용�
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun SplashScreenPreview() {
+    SplashScreen()
 }
