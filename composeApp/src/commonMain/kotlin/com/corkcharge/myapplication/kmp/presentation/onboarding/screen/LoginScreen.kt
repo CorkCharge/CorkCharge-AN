@@ -17,6 +17,7 @@ import kmp_corkcharge_an.composeapp.generated.resources.bg_login
 import kmp_corkcharge_an.composeapp.generated.resources.img_corkcharge_logo
 import kmp_corkcharge_an.composeapp.generated.resources.img_naver_login_button
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun LoginScreen(
@@ -79,4 +80,10 @@ fun LoginScreen(
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun LoginScreenPreview() {
+    LoginScreen()
 }
