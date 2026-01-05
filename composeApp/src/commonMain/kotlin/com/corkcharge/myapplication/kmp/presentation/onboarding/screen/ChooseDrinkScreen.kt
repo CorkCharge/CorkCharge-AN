@@ -1,4 +1,4 @@
-package com.corkcharge.myapplication.kmp.ui.onboarding.screen
+package com.corkcharge.myapplication.kmp.presentation.onboarding.screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
