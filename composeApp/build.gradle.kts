@@ -8,6 +8,14 @@ plugins {
     alias(libs.plugins.composeCompiler)
     // 1. Kotlin Serialization 플러그인 추가 (필수)
     kotlin("plugin.serialization") version "2.1.0"
+    alias(libs.plugins.detekt)
+}
+
+detekt {
+    toolVersion = libs.versions.detekt.get()
+    buildUponDefaultConfig = true // 기본 규칙 사용
+    allRules = false
+    config.setFrom(files("$rootDir/config/detekt/detekt.yml")) // 설정 파일 경로 (선택 사항)
 }
 
 kotlin {
@@ -52,7 +60,10 @@ kotlin {
             implementation(libs.kotlin.test)
         }
     }
+
 }
+
+
 
 android {
     namespace = "com.corkcharge.myapplication.kmp"
