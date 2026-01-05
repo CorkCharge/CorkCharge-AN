@@ -1,13 +1,21 @@
 package com.corkcharge.myapplication.kmp.presentation.onboarding.screen
 
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
@@ -26,6 +34,31 @@ fun ExcavationCorkageScreen(
     onNavigateToNext: () -> Unit = {},
     onNavigateToLogin: () -> Unit = {}
 ) {
+    var startAnimation by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        startAnimation = true
+    }
+
+    val contentAlpha by animateFloatAsState(
+        targetValue = if (startAnimation) 1f else 0f,
+        animationSpec = tween(durationMillis = 700,delayMillis = 700)
+    )
+    val contentTranslationY by animateFloatAsState(
+        targetValue = if (startAnimation) 0f else 50f,
+        animationSpec = tween(durationMillis = 700, delayMillis = 700)
+    )
+
+    val iconAlpha by animateFloatAsState(
+        targetValue = if (startAnimation) 1f else 0f,
+        animationSpec = tween(durationMillis = 700)
+    )
+
+    val iconTranslationY by animateFloatAsState(
+        targetValue = if (startAnimation) 0f else 50f,
+        animationSpec = tween(durationMillis = 700)
+    )
+
     Box(modifier = modifier.fillMaxSize()) {
         Image(
             painter = painterResource(Res.drawable.bg_onboarding3),
@@ -70,7 +103,8 @@ fun ExcavationCorkageScreen(
                 text = "코르크차지의\n콜키지 발굴 방법²",
                 style = CorkChargeTheme.typography.HeadLine_XL,
                 color = Color.Black,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                modifier = Modifier.graphicsLayer(alpha = contentAlpha, translationY = contentTranslationY)
             )
 
             Spacer(modifier = Modifier.height(18.dp))
@@ -78,7 +112,8 @@ fun ExcavationCorkageScreen(
             Text(
                 text = "해주세요에서 직접적인 요청이 가능합니다",
                 style = CorkChargeTheme.typography.HeadLine_Small,
-                color = CorkChargeTheme.colors.gray7
+                color = CorkChargeTheme.colors.gray7,
+                modifier = Modifier.graphicsLayer(alpha = contentAlpha, translationY = contentTranslationY)
             )
 
             Spacer(modifier = Modifier.height(42.dp))
@@ -86,7 +121,7 @@ fun ExcavationCorkageScreen(
             Image(
                 painter = painterResource(Res.drawable.img_shake_hand),
                 contentDescription = null,
-                modifier = Modifier.size(242.dp)
+                modifier = Modifier.size(242.dp).graphicsLayer(alpha = iconAlpha, translationY = iconTranslationY)
             )
 
             Spacer(modifier = Modifier.weight(1f))
@@ -96,13 +131,14 @@ fun ExcavationCorkageScreen(
                 Text(
                     text = "해주세요 서비스란?",
                     style = CorkChargeTheme.typography.Body_Medium_B,
-                    color = CorkChargeTheme.colors.gray8
+                    color = CorkChargeTheme.colors.gray8,
+                    modifier = Modifier.graphicsLayer(alpha = contentAlpha, translationY = contentTranslationY)
                 )
                 Text(
-                    text = "코르크 차지의 추가 방식은 매장에 직접 방문하여\n사장님과 함께 콜키지 비즈니스를 시작하는방식입니다.\n'해주세요 리스트'에 등록된 매장은 우선적으로 콜키지 영업\n을 진행하게 됩니다.",
+                    text = "코르크 차지의 추가 방식은 매장에 직접 방문하여\n사장님과 함께 콜키지 비즈니스를 시작하는 방식입니다.\n'해주세요 리스트'에 등록된 매장은 우선적으로 콜키지 영업\n을 진행하게 됩니다.",
                     style = CorkChargeTheme.typography.Label_Tab,
                     color = CorkChargeTheme.colors.gray8,
-                    modifier = Modifier.padding(top = 8.dp)
+                    modifier = Modifier.padding(top = 8.dp).graphicsLayer(alpha = contentAlpha, translationY = contentTranslationY)
                 )
             }
 
@@ -113,8 +149,8 @@ fun ExcavationCorkageScreen(
                 contentDescription = "다음 버튼",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(56.dp)
                     .clickable(onClick = onNavigateToNext)
+                    .graphicsLayer(alpha = contentAlpha, translationY = contentTranslationY)
             )
         }
     }

@@ -104,7 +104,7 @@ fun ExplainCorkageScreen(
 
                 Text(
                     text = "경우에 따라 잔과 얼음을 제공하기도 합니다.",
-                    color = Color.Gray, // 배경이 밝아지므로 어두운 색 권장
+                    color = Color.White,
                     style = CorkChargeTheme.typography.Label_Tab
                 )
                 Spacer(modifier = Modifier.height(36.dp))
@@ -113,7 +113,7 @@ fun ExplainCorkageScreen(
                 Image(
                     painter = painterResource(Res.drawable.img_next_btn),
                     contentDescription = "다음 버튼",
-                    modifier = Modifier.fillMaxWidth().height(56.dp).clickable { onNavigateToNext() }
+                    modifier = Modifier.fillMaxWidth().clickable { onNavigateToNext() }
                 )
             }
         }

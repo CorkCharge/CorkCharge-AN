@@ -32,16 +32,16 @@ fun StartSplashScreen(
 
     val logoAlpha by animateFloatAsState(
         targetValue = if (startAnimation) 1f else 0f,
-        animationSpec = tween(durationMillis = 500)
+        animationSpec = tween(durationMillis = 1000)
     )
     val logoTranslationY by animateFloatAsState(
         targetValue = if (startAnimation) 0f else 80f,
-        animationSpec = tween(durationMillis = 500)
+        animationSpec = tween(durationMillis = 1000)
     )
 
     val textAlpha by animateFloatAsState(
         targetValue = if (startAnimation) 1f else 0f,
-        animationSpec = tween(durationMillis = 500, delayMillis = 100)
+        animationSpec = tween(durationMillis = 1000, delayMillis = 300)
     )
 
     Box(modifier = modifier.fillMaxSize()) {
