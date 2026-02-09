@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹뷰 JavaScript Bridge 예제</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            background: #007AFF;
+            color: white;
+            cursor: pointer;
+        }
+        button:active {
+            background: #0051D5;
+        }
+        .info {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        code {
+            background: #e8e8e8;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>웹뷰 Bridge 예제</h1>
+
+    <div class="info">
+        <h3>사용 방법</h3>
+        <p>아래 버튼들을 클릭하면 앱으로 메시지가 전송됩니다.</p>
+        <p>메시지는 JSON 형식으로 <code>window.kmpJsBridge.callNative()</code>를 통해 전송됩니다.</p>
+    </div>
+
+    <h2>기본 이벤트</h2>
+    <button onclick="sendSimpleMessage('RESERVATION_CLICK')">예약 화면으로 이동</button>
+    <button onclick="sendSimpleMessage('LOGIN_REQUIRED')">로그인 화면으로 이동</button>
+
+    <h2>플랫폼 기능</h2>
+    <button onclick="callPhone()">전화 걸기</button>
+    <button onclick="shareContent()">공유하기</button>
+    <button onclick="openBrowser()">외부 브라우저 열기</button>
+
+    <h2>화면 이동</h2>
+    <button onclick="navigateToScreen('reservation_list')">예약 목록 화면</button>
+    <button onclick="navigateToScreen('login')">로그인 화면</button>
+
+    <script>
+        // 간단한 문자열 메시지 전송 (sendToNative 메소드 사용)
+        function sendSimpleMessage(message) {
+            if (window.kmpJsBridge) {
+                const data = JSON.stringify({
+                    action: message
+                });
+                window.kmpJsBridge.callNative(
+                    "sendToNative",
+                    data,
+                    function(response) {
+                        console.log('앱 응답:', response);
+                    }
+                );
+                console.log('메시지 전송:', message);
+            } else {
+                console.warn('kmpJsBridge를 사용할 수 없습니다.');
+            }
+        }
+
+        // 전화 걸기
+        function callPhone() {
+            if (window.kmpJsBridge) {
+                const data = JSON.stringify({
+                    phoneNumber: '010-1234-5678'
+                });
+                window.kmpJsBridge.callNative(
+                    "callPhone",
+                    data,
+                    function(response) {
+                        console.log('전화 걸기 응답:', response);
+                    }
+                );
+            }
+        }
+
+        // 공유하기
+        function shareContent() {
+            if (window.kmpJsBridge) {
+                const data = JSON.stringify({
+                    title: '코르크차지',
+                    text: '코르크차지에서 최고의 콜키지 맛집을 찾아보세요!',
+                    url: 'https://corkcharge.com'
+                });
+                window.kmpJsBridge.callNative(
+                    "share",
+                    data,
+                    function(response) {
+                        console.log('공유하기 응답:', response);
+                    }
+                );
+            }
+        }
+
+        // 외부 브라우저로 열기
+        function openBrowser() {
+            if (window.kmpJsBridge) {
+                const data = JSON.stringify({
+                    url: 'https://corkcharge.com'
+                });
+                window.kmpJsBridge.callNative(
+                    "openBrowser",
+                    data,
+                    function(response) {
+                        console.log('브라우저 열기 응답:', response);
+                    }
+                );
+            }
+        }
+
+        // 앱 내부 화면 이동
+        function navigateToScreen(screenName) {
+            if (window.kmpJsBridge) {
+                const data = JSON.stringify({
+                    screen: screenName
+                });
+                window.kmpJsBridge.callNative(
+                    "navigate",
+                    data,
+                    function(response) {
+                        console.log('화면 이동 응답:', response);
+                    }
+                );
+            }
+        }
+
+        // 페이지 로드 시 kmpJsBridge 확인
+        window.addEventListener('load', function() {
+            if (window.kmpJsBridge) {
+                console.log('✅ JavaScript Bridge가 준비되었습니다.');
+            } else {
+                console.warn('⚠️ JavaScript Bridge를 사용할 수 없습니다. 웹 브라우저에서 실행 중입니다.');
+            }
+        });
+    </script>
+</body>
+</html>

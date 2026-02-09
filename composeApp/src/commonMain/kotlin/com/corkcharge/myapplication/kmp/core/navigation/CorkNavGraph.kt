@@ -7,6 +7,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import com.corkcharge.myapplication.kmp.presentation.onboarding.screen.*
+import com.corkcharge.myapplication.kmp.presentation.webview.screen.HomeWebViewScreen
+import com.corkcharge.myapplication.kmp.presentation.webview.screen.NaverLoginWebViewScreen
 
 @Composable
 fun CorkNavgraph(
@@ -57,8 +59,24 @@ fun CorkNavgraph(
             }
 
             composable<Route.FinishSplash> {
-                FinishSplashScreen(modifier = modifier)
+                FinishSplashScreen(
+                    modifier = modifier,
+                    onNavigateToHome = {
+                        navController.navigate(Route.HomeWebView) {
+                            popUpTo(Route.OnboardingGraph) { inclusive = true }
+                        }
+                    }
+                )
             }
+        }
+
+        // 웹뷰 화면들
+        composable<Route.HomeWebView> {
+            HomeWebViewScreen(navController = navController)
+        }
+
+        composable<Route.NaverLogin> {
+            NaverLoginWebViewScreen(navController = navController)
         }
     }
 }

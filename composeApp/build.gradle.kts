@@ -53,8 +53,9 @@ kotlin {
             implementation("io.coil-kt.coil3:coil-compose:3.0.0-alpha06")
             implementation(libs.navigation.compose)
 
-            // 2. JSON 직렬화 라이브러리 추가 (필수)
+            // JSON 직렬화 라이브러리 추가
             implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+            implementation(libs.multiplatform.webview)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
