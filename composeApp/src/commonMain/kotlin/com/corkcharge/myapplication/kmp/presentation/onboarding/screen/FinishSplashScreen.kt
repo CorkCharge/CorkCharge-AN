@@ -3,10 +3,12 @@ package com.corkcharge.myapplication.kmp.presentation.onboarding.screen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.delay
 import kmp_corkcharge_an.composeapp.generated.resources.Res
 import kmp_corkcharge_an.composeapp.generated.resources.bg_gradient_left
 import kmp_corkcharge_an.composeapp.generated.resources.img_corkcharge_logo
@@ -14,7 +16,15 @@ import kmp_corkcharge_an.composeapp.generated.resources.img_corkcharge_text
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-fun FinishSplashScreen(modifier: Modifier = Modifier) {
+fun FinishSplashScreen(
+    modifier: Modifier = Modifier,
+    onNavigateToHome: () -> Unit = {}
+) {
+    LaunchedEffect(Unit) {
+        delay(2000) // 2초 후 홈 화면으로 이동
+        onNavigateToHome()
+    }
+
     Box(modifier = modifier.fillMaxSize()) {
         Image(
             painter = painterResource(Res.drawable.bg_gradient_left),
