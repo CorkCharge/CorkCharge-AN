@@ -11,6 +11,8 @@ import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.corkcharge.corkcharge_an.data.repository.FcmRepository
+import com.google.firebase.messaging.FirebaseMessagingService
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -52,7 +54,10 @@ class FcmService : FirebaseMessagingService() {
 
     // 실제로 푸시가 도착했을 때 호출되는 콜백
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        Log.d(TAG, "푸시 메시지 수신: data=${remoteMessage.data}, notification=${remoteMessage.notification}")
+        Log.d(
+            TAG,
+            "푸시 메시지 수신: data=${remoteMessage.data}, notification=${remoteMessage.notification}"
+        )
         showNotification(remoteMessage)
     }
 
