@@ -13,7 +13,7 @@ fun HomeWebViewScreen(navController: NavController) {
     val platformActions = rememberPlatformActions()
 
     CommonWebView(
-        url = "https://cork-charge-fe-deployment.vercel.app/signin",
+        url = "https://cork-charge-fe-deployment.vercel.app/",
         onBridgeMessage = { methodName, params ->
             try {
                 // JSON 파라미터 파싱

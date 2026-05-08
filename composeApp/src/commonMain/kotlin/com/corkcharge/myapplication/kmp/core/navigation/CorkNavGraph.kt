@@ -6,9 +6,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
-import com.corkcharge.myapplication.kmp.presentation.onboarding.screen.*
+import com.corkcharge.myapplication.kmp.presentation.onboarding.screen.ExcavationCorkageScreen
+import com.corkcharge.myapplication.kmp.presentation.onboarding.screen.ExplainCorkageScreen
+import com.corkcharge.myapplication.kmp.presentation.onboarding.screen.FinishSplashScreen
+import com.corkcharge.myapplication.kmp.presentation.onboarding.screen.LoginScreen
+import com.corkcharge.myapplication.kmp.presentation.onboarding.screen.StartSplashScreen
 import com.corkcharge.myapplication.kmp.presentation.webview.screen.HomeWebViewScreen
-import com.corkcharge.myapplication.kmp.presentation.webview.screen.NaverLoginWebViewScreen
 
 @Composable
 fun CorkNavgraph(
@@ -46,8 +49,16 @@ fun CorkNavgraph(
             composable<Route.ExcavationCorkage> {
                 ExcavationCorkageScreen(
                     modifier = modifier,
-                    onNavigateToNext = { navController.navigate(Route.Login) },
-                    onNavigateToLogin = { navController.navigate(Route.Login) }
+                    onNavigateToNext = {
+                        navController.navigate(Route.HomeWebView) {
+                            popUpTo(Route.OnboardingGraph) { inclusive = true }
+                        }
+                    },
+                    onNavigateToLogin = {
+                        navController.navigate(Route.HomeWebView) {
+                            popUpTo(Route.OnboardingGraph) { inclusive = true }
+                        }
+                    }
                 )
             }
 
@@ -73,10 +84,6 @@ fun CorkNavgraph(
         // 웹뷰 화면들
         composable<Route.HomeWebView> {
             HomeWebViewScreen(navController = navController)
-        }
-
-        composable<Route.NaverLogin> {
-            NaverLoginWebViewScreen(navController = navController)
         }
     }
 }

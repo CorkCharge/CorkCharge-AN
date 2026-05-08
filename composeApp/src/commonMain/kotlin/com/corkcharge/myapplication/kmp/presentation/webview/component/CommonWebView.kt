@@ -21,7 +21,7 @@ import com.multiplatform.webview.web.rememberWebViewState
 fun CommonWebView(
     url: String,
     modifier: Modifier = Modifier.fillMaxSize(),
-    onBridgeMessage: (methodName: String, message: String) -> Unit
+    onBridgeMessage: (methodName: String, message: String) -> Unit,
 ) {
     val state = rememberWebViewState(url)
     val jsBridge = rememberWebViewJsBridge()

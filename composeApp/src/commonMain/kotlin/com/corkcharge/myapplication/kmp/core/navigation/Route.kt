@@ -27,7 +27,4 @@ sealed interface Route {
     // 웹뷰 화면들
     @Serializable
     data object HomeWebView : Route
-
-    @Serializable
-    data object NaverLogin : Route
 }
